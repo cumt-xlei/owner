@@ -35,3 +35,6 @@
 每个consumer group都有属于各自的GroupCoordinator，负责接收consumers发送来的心跳信息等，并且会触发partition rebalance。
 &emsp;每个Consumer加入Consumer Group的时候，会先发送JoinGroup request到GroupCoordinator，第一个请求的consumer成为ConsumerLeader，该consumer会接收到consumers列表(alive consumer)，然后将按照PartitionAssignor的某个实现(默认是RangeAssignor)来进行 partition assignment， 最后将结果发送到GroupCoordinator由它给其余Consumers发送。
 > 这个过程发生在每次rebalance时
+
+**5、提交Offset**
+https://blog.csdn.net/weixin_41227335/article/details/86522041
