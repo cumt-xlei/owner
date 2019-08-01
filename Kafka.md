@@ -19,7 +19,7 @@
 **3、拉取数据流程**
 - 1）确保kafka协调者认可了此次消费，并初始化和协调者的连接。认可很多层次的含义，包括kafka集群是否正常，安全认证是否通过之类。
 - 2）确保分区被分配，除了手动assgin的topic，partition和offset，自动subscribe需要从kafka协调者获取相关元数据，也是发生重平衡事件的来源。
-- 3) 确保已经获取拉取的offset，否则为从协调者那重新获取对应groupid的offset，如果获取失败（比如这是一个新的groupid），那么会重置offset，根据配置用最旧或者最新来代替。参考`ConsumerCoordinator`
+- 3）确保已经获取拉取的offset，否则为从协调者那重新获取对应groupid的offset，如果获取失败（比如这是一个新的groupid），那么会重置offset，根据配置用最旧或者最新来代替。参考`ConsumerCoordinator`
 - 4）拉取数据，通过拉取每个partition的leader，基于NIO思路拉取数据缓存在内存中；参考`Fetcher`。
 - 5）提交offset，如果开启自动提交offset的功能，那么消费者会在两个情况同步提交offset。①重平衡或者和broker心跳超时；②消费者关闭时。如果是手动提交的话可以采用异步或者同步两种提交方式。
 
