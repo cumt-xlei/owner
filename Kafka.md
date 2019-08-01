@@ -37,4 +37,5 @@
 > 这个过程发生在每次rebalance时
 
 **5、提交Offset**
+
 https://blog.csdn.net/weixin_41227335/article/details/86522041
