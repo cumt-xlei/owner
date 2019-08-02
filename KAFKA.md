@@ -32,9 +32,9 @@
 
 **4、Rebalance**
 发生条件：
-- 1) 一个消费者组内的任意一个消费者退出和加入都会引发rebalance.
-- 2) 分区的增加
-- 3) 订阅主题的增加(正则订阅)
+- 1）一个消费者组内的任意一个消费者退出和加入都会引发rebalance.
+- 2）分区的增加
+- 3）订阅主题的增加(正则订阅)
 
 &emsp;&emsp;GroupCoordinator是众多brokers中的一台，而ConsumerLeader是众多consumers中的一个。每个consumer group都有属于各自的GroupCoordinator，负责接收consumers发送来的心跳信息等，并且会触发partition rebalance。
 
