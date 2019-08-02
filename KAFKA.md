@@ -36,6 +36,18 @@
 &emsp;每个Consumer加入Consumer Group的时候，会先发送JoinGroup request到GroupCoordinator，第一个请求的consumer成为ConsumerLeader，该consumer会接收到consumers列表(alive consumer)，然后将按照PartitionAssignor的某个实现(默认是RangeAssignor)来进行 partition assignment， 最后将结果发送到GroupCoordinator由它给其余Consumers发送。
 > 这个过程发生在每次rebalance时
 
-**5、提交Offset**
+**5、消费组状态位**
+- 1）Empty：组内无成员，但是位移信息还没有过期。这种状态只能响应JoinGroup请求。
+- 2）PreparingRebalance：表明group正在准备进行group rebalance。此时group收到部分成员发送的JoinGroup请求，同时等待其他成员发送JoinGroup请求，直到所耦成员都成功加入组或超时。
+- 3）AwaitingSyc:表明所有成员都已经加入组并等待leader consumer发送分区分配方案。
+- 4）Stable:表明group开始正常消费，可以响应客户端发送的任何请求
+- 5）Dead:表明group已经彻底废弃，group内没有任何active成员且group的所有元数据都已被删除，这种状态响应各种请求都是一个response： UNKNOWN_MEMBER_ID
+
+**6、消费组说明**
+
+https://www.cnblogs.com/heidsoft/p/7697974.html
+https://blog.csdn.net/qwe6112071/article/details/86680900#_319
+
+**7、提交Offset**
 
 https://blog.csdn.net/weixin_41227335/article/details/86522041
