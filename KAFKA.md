@@ -47,12 +47,17 @@
 - 3）AwaitingSyc:表明所有成员都已经加入组并等待leader consumer发送分区分配方案。
 - 4）Stable:表明group开始正常消费，可以响应客户端发送的任何请求
 - 5）Dead:表明group已经彻底废弃，group内没有任何active成员且group的所有元数据都已被删除，这种状态响应各种请求都是一个response： UNKNOWN_MEMBER_ID
+> 第一次poll数据时，查询kafka中保持的消费组的offset状态时，每个partition的committed offset初始为空；如果在接下来的时间消费者退出组，组内无存活的消费者；则在rebalance结束后，①如果已经成功提交了消费点位，则消费组进入Empty状态；②如果未成功提交，则消费组进入Dead状态。
 
 **6、消费组说明**
 
 https://www.cnblogs.com/heidsoft/p/7697974.html
 
 https://blog.csdn.net/qwe6112071/article/details/86680900#_319
+
+> 消费者要安全退出消费组，最后需执行close方法
+
+> 消费组提交的offset信息保留时间可设置，可调节offset信息
 
 **7、提交Offset**
 
