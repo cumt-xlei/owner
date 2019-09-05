@@ -63,5 +63,5 @@ https://blog.csdn.net/qwe6112071/article/details/86680900#_319
 
 https://blog.csdn.net/weixin_41227335/article/details/86522041
 
-##kafka consumer 配置详解和提交方式
+## kafka consumer 配置详解和提交方式
 https://blog.csdn.net/u012129558/article/details/80076327
